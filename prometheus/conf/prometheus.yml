@@ -1,0 +1,282 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['10.247.21.83:9090']
+
+  - job_name: 'node-exporter_ktbcs_bac'
+    static_configs:
+    #ktbcs_bac
+      - targets: ['10.247.40.240:9100']
+      - targets: ['10.247.40.241:9100']
+      - targets: ['10.247.40.242:9100']
+      - targets: ['10.247.40.243:9100']
+      - targets: ['10.247.40.244:9100']
+      - targets: ['10.247.40.245:9100']
+      - targets: ['10.247.40.246:9100'] 
+      - targets: ['10.247.40.247:9100']
+      - targets: ['10.247.40.248:9100']
+      - targets: ['10.247.41.240:9100']
+      - targets: ['10.247.41.241:9100']
+      - targets: ['10.247.41.242:9100']
+
+  - job_name: 'opensearch_exporter_ktbcs_bac'
+    scheme: https
+    scrape_interval: 10s
+    metrics_path: "/_prometheus/metrics"
+    static_configs:
+    #ktbcs_bac
+      - targets: ['10.247.40.243:9200']
+      - targets: ['10.247.40.244:9200']
+      - targets: ['10.247.40.245:9200']
+    basic_auth:
+      username: 'admin'
+      password: 'admin'
+    tls_config:
+      insecure_skip_verify: true
+
+  - job_name: 'node-exporter_ktbcs_core'
+    static_configs:
+    #ktbcs_core
+      - targets: ['10.247.42.240:9100']
+      - targets: ['10.247.42.241:9100']
+      - targets: ['10.247.42.242:9100']
+      - targets: ['10.247.42.243:9100']
+      - targets: ['10.247.42.244:9100']
+      - targets: ['10.247.42.245:9100']
+      - targets: ['10.247.42.246:9100'] 
+      - targets: ['10.247.42.247:9100']
+      - targets: ['10.247.42.248:9100']
+      - targets: ['10.247.43.240:9100']
+      - targets: ['10.247.43.241:9100']
+      - targets: ['10.247.43.242:9100']
+
+  - job_name: 'node-exporter_ktbcs_GM'
+    static_configs:
+    #ktbcs_GM
+      - targets: ['10.247.44.240:9100']
+      - targets: ['10.247.44.241:9100']
+      - targets: ['10.247.44.242:9100']
+      - targets: ['10.247.44.243:9100']
+      - targets: ['10.247.44.244:9100']
+      - targets: ['10.247.44.245:9100']
+      - targets: ['10.247.44.246:9100'] 
+      - targets: ['10.247.44.247:9100']
+      - targets: ['10.247.44.248:9100']
+      - targets: ['10.247.45.240:9100']
+      - targets: ['10.247.45.241:9100']
+      - targets: ['10.247.45.242:9100']
+
+  - job_name: 'node-exporter_ktbcs_GTB'
+    static_configs:
+    #ktbcs_GTB
+      - targets: ['10.247.46.240:9100']
+      - targets: ['10.247.46.241:9100']
+      - targets: ['10.247.46.242:9100']
+      - targets: ['10.247.46.243:9100']
+      - targets: ['10.247.46.244:9100']
+      - targets: ['10.247.46.245:9100']
+      - targets: ['10.247.46.246:9100'] 
+      - targets: ['10.247.46.247:9100']
+      - targets: ['10.247.46.248:9100']
+      - targets: ['10.247.47.240:9100']
+      - targets: ['10.247.47.241:9100']
+      - targets: ['10.247.47.242:9100']
+
+  - job_name: 'node-exporter_ktbcs_INNO'
+    static_configs:
+    #ktbcs_INNO
+      - targets: ['10.247.38.240:9100']
+      - targets: ['10.247.38.241:9100']
+      - targets: ['10.247.38.242:9100']
+      - targets: ['10.247.38.243:9100']
+      - targets: ['10.247.38.244:9100']
+      - targets: ['10.247.38.245:9100']
+      - targets: ['10.247.38.246:9100'] 
+      - targets: ['10.247.38.247:9100']
+      - targets: ['10.247.38.248:9100']
+      - targets: ['10.247.39.240:9100']
+      - targets: ['10.247.39.241:9100']
+      - targets: ['10.247.39.242:9100']
+
+  - job_name: 'kong_bac'
+    static_configs:
+      #kong_bac
+      - targets: ['10.247.40.240:8001']
+      - targets: ['10.247.40.241:8001']
+     
+  - job_name: 'kong_core'
+    static_configs:
+      #kong_core 
+      - targets: ['10.247.42.240:8001']
+      - targets: ['10.247.42.241:8001']
+     
+  - job_name: 'kong_GM'
+    static_configs:
+        #kong_GM 
+      - targets: ['10.247.44.240:8001']
+      - targets: ['10.247.44.241:8001']
+     
+  - job_name: 'kong_GTB'
+    static_configs:
+        #kong_GTB
+      - targets: ['10.247.46.240:8001']
+      - targets: ['10.247.46.241:8001']
+    
+  - job_name: 'kong_INNO'
+    static_configs:
+      #kong_INNO 
+      - targets: ['10.247.38.240:8001']
+      - targets: ['10.247.38.241:8001']
+
+  - job_name: 'cassandra_BAC'
+    static_configs:
+      #kong_BAC
+      - targets: ['10.247.41.240:8080']
+      - targets: ['10.247.41.241:8080']
+      - targets: ['10.247.41.242:8080']
+
+  - job_name: 'cassandra_CORE'
+    static_configs:
+      #kong_Core
+      - targets: ['10.247.43.240:8080']
+      - targets: ['10.247.43.241:8080']
+      - targets: ['10.247.43.242:8080']
+
+  - job_name: 'cassandra_GM'
+    static_configs:
+      #kong_GM
+      - targets: ['10.247.45.240:8080']
+      - targets: ['10.247.45.241:8080']
+      - targets: ['10.247.45.242:8080']
+
+  - job_name: 'cassandra_GTB'
+    static_configs:
+      #kong_GTB   
+      - targets: ['10.247.47.240:8080']
+      - targets: ['10.247.47.241:8080']
+      - targets: ['10.247.47.242:8080']
+    
+  - job_name: 'cassandra_iNNO'
+    static_configs:
+      #kong_InNO
+      - targets: ['10.247.39.240:8080']
+      - targets: ['10.247.39.241:8080']
+      - targets: ['10.247.39.242:8080']
+   
+  - job_name: 'opensearch_BAC'
+    static_configs:
+      #kong_BAC
+      - targets: ['10.247.40.243:9114']
+      - targets: ['10.247.40.244:9114']
+      - targets: ['10.247.40.245:9114']
+
+  - job_name: 'opensearch_iNNO'
+    static_configs:
+      #kong_InNO
+      - targets: ['10.247.38.243:9114']
+      - targets: ['10.247.38.244:9114']
+      - targets: ['10.247.38.245:9114']
+
+  - job_name: 'opensearch_GTB'
+    static_configs:
+      #kong_GTB
+      - targets: ['10.247.46.243:9114']
+      - targets: ['10.247.46.244:9114']
+      - targets: ['10.247.46.245:9114']
+
+
+  - job_name: 'opensearch_GM'
+    static_configs:
+      #kong_GM
+      - targets: ['10.247.44.243:9114']
+      - targets: ['10.247.44.244:9114']
+      - targets: ['10.247.44.245:9114']
+
+  - job_name: 'opensearch_CORE'
+    static_configs:
+      #kong_Core 
+      - targets: ['10.247.42.243:9114']
+      - targets: ['10.247.42.244:9114']
+      - targets: ['10.247.42.245:9114']
+
+
+  - job_name: 'opensearch_exporter_ktbcs_core'
+    scheme: https
+    scrape_interval: 10s
+    metrics_path: "/_prometheus/metrics"
+    static_configs:
+    #ktbcs_bac
+      - targets: ['10.247.42.243:9200']
+      - targets: ['10.247.42.244:9200']
+      - targets: ['10.247.42.245:9200']
+    basic_auth:
+      username: 'admin'
+      password: 'admin'
+    tls_config:
+      insecure_skip_verify: true
+
+  - job_name: 'opensearch_exporter_ktbcs_gm'
+    scheme: https
+    scrape_interval: 10s
+    metrics_path: "/_prometheus/metrics"
+    static_configs:
+    #ktbcs gm
+      - targets: ['10.247.44.243:9200']
+      - targets: ['10.247.44.244:9200']
+      - targets: ['10.247.44.245:9200']
+    basic_auth:
+      username: 'admin'
+      password: 'admin'
+    tls_config:
+      insecure_skip_verify: true
+
+  - job_name: 'opensearch_exporter_ktbcs_gtb'
+    scheme: https
+    scrape_interval: 10s
+    metrics_path: "/_prometheus/metrics"
+    static_configs:
+    #ktbcs_gtb
+      - targets: ['10.247.46.243:9200']
+      - targets: ['10.247.46.244:9200']
+      - targets: ['10.247.46.245:9200']
+    basic_auth:
+      username: 'admin'
+      password: 'admin'
+    tls_config:
+      insecure_skip_verify: true
+
+  - job_name: 'opensearch_exporter_ktbcs_inno'
+    scheme: https
+    scrape_interval: 10s
+    metrics_path: "/_prometheus/metrics"
+    static_configs:
+    #ktbcs_inno
+      - targets: ['10.247.38.243:9200']
+      - targets: ['10.247.38.244:9200']
+      - targets: ['10.247.38.245:9200']
+    basic_auth:
+      username: 'admin'
+      password: 'admin'
+    tls_config:
+      insecure_skip_verify: true

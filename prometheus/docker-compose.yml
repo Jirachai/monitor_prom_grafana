@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  prom:
+    image: registry.devopsnonprd.vayuktbcs:8083/prom/prometheus:v2.34.0
+    restart: always
+    network_mode: host
+    container_name: prom
+    command: ["--config.file=/conf/prometheus.yml",
+              "--storage.tsdb.retention=30d",
+              "--web.listen-address=10.247.21.83:9090",
+              "--web.enable-lifecycle"]
+    volumes:
+      - ./conf:/conf
+      - /var/data/prometheus_data:/prometheus
+
